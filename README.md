@@ -62,3 +62,17 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+
+# Apuntes importantes
+## Migrate vaciando la base de datos
+
+```
+sail-argovot php artisan migrate:fresh --seed
+```
+
+## Donde se encuentran los logos
+
+* `aplication-mark.blade.php`
+* `authentication-card-logo.blade.php`
+* `authentication-logo.blade.php`
