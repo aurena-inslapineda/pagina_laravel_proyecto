@@ -23,6 +23,8 @@ return new class extends Migration
             $table->tinyInteger('crew_size');
             $table->float('lenght');
             $table->integer('mass');
+            $table->float('unit_price');
+            $table->integer('units_in_stock');
             $table->timestamps();
 
 

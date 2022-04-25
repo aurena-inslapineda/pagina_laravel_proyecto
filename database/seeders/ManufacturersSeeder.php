@@ -4,20 +4,19 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\Manufacturers;
 
-class DatabaseSeeder extends Seeder
+class ManufacturersSeeder extends Seeder
 {
     /**
-     * Seed the application's database.
+     * Run the database seeds.
      *
      * @return void
      */
     public function run()
     {
-        $this->call([
-            AdminSeeder::class,
-            ManufacturersSeeder::class,
+        Manufacturers::create([
+            'manufacturer_name' => 'Robert Space Industries',
         ]);
-        // \App\Models\User::factory(10)->create();
     }
 }
