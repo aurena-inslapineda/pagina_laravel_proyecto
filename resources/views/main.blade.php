@@ -12,3 +12,5 @@
         @endauth
     </div>
 @endif
+
+<x-heroicon-o-camera/>
