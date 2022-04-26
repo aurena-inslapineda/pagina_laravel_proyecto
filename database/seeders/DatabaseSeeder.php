@@ -14,9 +14,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        // new FocusSeeder
         $this->call([
             AdminSeeder::class,
             ManufacturersSeeder::class,
+            RolsSeeder::class,
+            FocusSeeder::class,
         ]);
         // \App\Models\User::factory(10)->create();
     }

@@ -22,5 +22,10 @@ class AdminSeeder extends Seeder
             'password' => Hash::make('RfKQhVnWc2aFrgV'),
             'isAdmin' => true,
         ]);
+        User::create([
+            'name' => 'User',
+            'email' => 'adrian.urena@inslapineda.cat',
+            'password' => Hash::make('dVRqBdAB8CaGFEA'),
+        ]);
     }
 }
