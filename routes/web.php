@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Load ships 
 Route::get('/', function () {
     return view('welcome');
 });
