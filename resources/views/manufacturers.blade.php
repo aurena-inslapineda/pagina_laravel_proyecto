@@ -31,7 +31,7 @@
                                         <x-far-edit class="text-blue-800 hover:text-blue-400"/>
                                     </a>
                                     {{-- llamar a la funcion delete del controlador, pasandole la id de $casal->id con un link y hacer un reload a la pagina--}}
-                                    <a href="{{ route('rol.delete', $manufacturer->id) }}">
+                                    <a href="{{ route('manufacturers.delete', $manufacturer->id) }}">
                                         <x-far-trash-alt class="text-red-800 hover:text-red-400" />
                                     </a
                                 </td>

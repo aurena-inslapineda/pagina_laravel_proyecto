@@ -25,9 +25,9 @@ Route::get('/dashboard', function () {
 // TODO Hacer que esta ruta solo pueda acceder un usuario con el artibuto isAdmin = true
 
 // SHIPS
-Route::get('/dashboard/ships', function () {
-    return view('ships');
-})->middleware(['adminAuth'])->name('ships');
+use App\Http\Controllers\ShipsController;
+Route::get('/dashboard/ships', [ShipsController::class, 'show'])->middleware(['adminAuth'])->name('ships');
+Route::get('/dashboard/ships/delete/{id_ship}', [ShipsController::class, 'delete'])->middleware(['adminAuth'])->name('ships.delete');
 
 
 // MANUFACTURERS

@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             ManufacturersSeeder::class,
             RolsSeeder::class,
             FocusSeeder::class,
+            ShipsSeeder::class,
         ]);
         // \App\Models\User::factory(10)->create();
     }

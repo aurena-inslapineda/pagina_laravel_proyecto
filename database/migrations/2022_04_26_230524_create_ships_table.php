@@ -21,7 +21,7 @@ return new class extends Migration
             $table->unsignedBigInteger('focus_id');
             $table->string('ship_image');
             $table->tinyInteger('crew_size');
-            $table->float('lenght');
+            $table->float('length');
             $table->integer('mass');
             $table->float('unit_price');
             $table->integer('units_in_stock');

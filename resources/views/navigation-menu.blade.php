@@ -16,18 +16,20 @@
                     <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-jet-nav-link>
-                    <x-jet-nav-link href="{{ route('ships') }}" :active="request()->routeIs('ships')">
-                        {{ __('Añadir nave') }}
-                    </x-jet-nav-link>
-                    <x-jet-nav-link href="{{ route('manufacturers') }}" :active="request()->routeIs('manufacturers')">
-                        {{ __('Añadir ensambladora') }}
-                    </x-jet-nav-link>
-                    <x-jet-nav-link href="{{ route('rol') }}" :active="request()->routeIs('rol')">
-                        {{ __('Añadir rol') }}
-                    </x-jet-nav-link>
-                    <x-jet-nav-link href="{{ route('focus') }}" :active="request()->routeIs('focus')">
-                        {{ __('Añadir focus') }}
-                    </x-jet-nav-link>
+                    @if ( Auth::user()->isAdmin )
+                        <x-jet-nav-link href="{{ route('ships') }}" :active="request()->routeIs('ships')">
+                            {{ __('Añadir nave') }}
+                        </x-jet-nav-link>
+                        <x-jet-nav-link href="{{ route('manufacturers') }}" :active="request()->routeIs('manufacturers')">
+                            {{ __('Añadir ensambladora') }}
+                        </x-jet-nav-link>
+                        <x-jet-nav-link href="{{ route('rol') }}" :active="request()->routeIs('rol')">
+                            {{ __('Añadir rol') }}
+                        </x-jet-nav-link>
+                        <x-jet-nav-link href="{{ route('focus') }}" :active="request()->routeIs('focus')">
+                            {{ __('Añadir focus') }}
+                        </x-jet-nav-link>
+                    @endif
                 </div>
             </div>
 
