@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2e803c78aa103e682ec978f64655c148",
+    "content-hash": "dad169d036e6f69cfa87d61a1108ba2c",
     "packages": [
         {
             "name": "bacon/bacon-qr-code",
@@ -349,6 +349,79 @@
                 }
             ],
             "time": "2021-08-15T20:50:18+00:00"
+        },
+        {
+            "name": "codeat3/blade-google-material-design-icons",
+            "version": "1.11.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/codeat3/blade-google-material-design-icons.git",
+                "reference": "df0e78c6e0af150b0f6daa367b3744fa247728f4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/codeat3/blade-google-material-design-icons/zipball/df0e78c6e0af150b0f6daa367b3744fa247728f4",
+                "reference": "df0e78c6e0af150b0f6daa367b3744fa247728f4",
+                "shasum": ""
+            },
+            "require": {
+                "blade-ui-kit/blade-icons": "^1.1",
+                "illuminate/support": "^8.0|^9.0",
+                "php": "^7.4|^8.0"
+            },
+            "require-dev": {
+                "codeat3/blade-icon-generation-helpers": "^0.1",
+                "codeat3/phpcs-styles": "^1.0",
+                "orchestra/testbench": "^6.0|^7.0",
+                "phpunit/phpunit": "^9.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Codeat3\\BladeGoogleMaterialDesignIcons\\BladeGoogleMaterialDesignIconsServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Codeat3\\BladeGoogleMaterialDesignIcons\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Swapnil Sarwe",
+                    "homepage": "https://swapnilsarwe.com"
+                },
+                {
+                    "name": "Dries Vints",
+                    "homepage": "https://driesvints.com"
+                }
+            ],
+            "description": "A package to easily make use of \"Google Fonts Material Icons\" in your Laravel Blade views.",
+            "homepage": "https://github.com/codeat3/blade-google-material-design-icons",
+            "keywords": [
+                "blade",
+                "google",
+                "icons",
+                "laravel",
+                "material"
+            ],
+            "support": {
+                "issues": "https://github.com/codeat3/blade-google-material-design-icons/issues",
+                "source": "https://github.com/codeat3/blade-google-material-design-icons/tree/1.11.2"
+            },
+            "funding": [
+                {
+                    "url": "https://www.buymeacoffee.com/swapnilsarwe",
+                    "type": "custom"
+                }
+            ],
+            "time": "2022-05-17T07:13:46+00:00"
         },
         {
             "name": "dasprid/enum",
@@ -9120,5 +9193,5 @@
         "php": "^8.0.2"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.2.0"
+    "plugin-api-version": "2.3.0"
 }

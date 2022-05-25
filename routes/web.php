@@ -13,17 +13,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Load ships 
+// Load ships
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+
+// TODO hacer que el usuario solo pueda ver sus ordenes y el admin todas las ordenes
+use App\Http\Controllers\OrdersController;
+Route::get('/dashboard', [OrdersController::class, 'show'])->middleware(['auth'])->name('dashboard');
 
 
-// TODO Hacer que esta ruta solo pueda acceder un usuario con el artibuto isAdmin = true
 
 // SHIPS
 use App\Http\Controllers\ShipsController;

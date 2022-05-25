@@ -65,6 +65,6 @@ class User extends Authenticatable
     // belongsToMany relationship orders
     public function orders()
     {
-        return $this->belongsToMany(Orders::class);
+        return $this->hasMany(Orders::class);
     }
 }

@@ -18,16 +18,20 @@ class Orders extends Model
         'status',
     ];
 
-    // belongsToMany relationship Bills
-    public function bills()
-    {
-        return $this->belongsToMany(Bills::class);
-    }
+
+
     // belongsToMany relationship Users
-    public function users()
+    public function user()
     {
-        return $this->belongsToMany(Users::class);
+        return $this->belongsTo(User::class);
     }
 
 
+    public function ships()
+    {
+        return $this->belongsToMany(Ships::class, 'order_ship')
+                    ->using(Bills::class)
+                    ->withPivot('quantity', 'unit_price')
+                    ->withTimestamps();
+    }
 }

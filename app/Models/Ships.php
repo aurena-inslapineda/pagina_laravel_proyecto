@@ -23,4 +23,10 @@ class Ships extends Model
     ];
 
     protected $table = 'ships';
+
+    public function orders()
+    {
+        return $this->belongsToMany(Orders::class, 'order_ship')->using(Bills::class)->withPivot('quantity', 'unit_price')->withTimestamps();
+
+    }
 }

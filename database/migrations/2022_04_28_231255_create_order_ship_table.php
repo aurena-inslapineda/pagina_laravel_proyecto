@@ -13,18 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('bills', function (Blueprint $table) {
+        Schema::create('order_ship', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('order_id');
-            $table->unsignedBigInteger('ship_id');
+            $table->foreignId('order_id')->constrained()->onUpdate('cascade');
+            $table->foreignId('ship_id')->constrained();
             $table->smallInteger('quantity');
-            $table->float('unit_price');
-            $table->float('total_price');
+            $table->decimal('unit_price');
             $table->timestamps();
-
-
-            $table->foreign('order_id')->references('id')->on('orders');
-            $table->foreign('ship_id')->references('id')->on('ships');
         });
     }
 
@@ -35,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('bills');
+        Schema::dropIfExists('order_ship');
     }
 };

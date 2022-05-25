@@ -15,15 +15,10 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('bill_id');
-            $table->float('paid');
+            $table->foreignId('user_id')->constrained();
+            $table->decimal('paid');
             $table->enum('status', ['pending', 'paid', 'cancelled']);
             $table->timestamps();
-
-
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('bill_id')->references('id')->on('bills');
         });
     }
 
@@ -34,6 +29,7 @@ return new class extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('order_ship');
         Schema::dropIfExists('orders');
     }
 };
