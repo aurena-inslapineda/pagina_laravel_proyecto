@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
             FocusSeeder::class,
             ShipsSeeder::class,
             OrdersSeeder::class,
+            Order_shipSeeder::class,
         ]);
         // \App\Models\User::factory(10)->create();
     }

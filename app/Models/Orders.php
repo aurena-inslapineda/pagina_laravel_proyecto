@@ -30,7 +30,7 @@ class Orders extends Model
     public function ships()
     {
         return $this->belongsToMany(Ships::class, 'order_ship')
-                    ->using(Bills::class)
+                    ->using(order_ship::class)
                     ->withPivot('quantity', 'unit_price')
                     ->withTimestamps();
     }

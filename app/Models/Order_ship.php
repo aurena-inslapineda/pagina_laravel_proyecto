@@ -17,6 +17,9 @@ class order_ship extends Pivot
         'quantity',
         'unit_price',
     ];
+
+
+    
 }
 
 // TODO hacer la reladcion
