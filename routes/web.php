@@ -13,10 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Load ships
-Route::get('/', function () {
-    return view('welcome');
-});
 
 
 // TODO hacer que el usuario solo pueda ver sus ordenes y el admin todas las ordenes
@@ -27,6 +23,8 @@ Route::get('/dashboard', [OrdersController::class, 'show'])->middleware(['auth']
 
 // SHIPS
 use App\Http\Controllers\ShipsController;
+// Load ships
+Route::get('/', [ShipsController::class, 'userShow']);
 Route::get('/dashboard/ships', [ShipsController::class, 'show'])->middleware(['adminAuth'])->name('ships');
 Route::get('/dashboard/ships/delete/{id_ship}', [ShipsController::class, 'delete'])->middleware(['adminAuth'])->name('ships.delete');
 Route::get('/dashboard/ships/update/{id_ship}', [ShipsController::class, 'update'])->middleware(['adminAuth'])->name('ships.update');

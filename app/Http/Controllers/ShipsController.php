@@ -14,6 +14,20 @@ use App\Models\Focus;
 
 class ShipsController extends Controller
 {
+
+    public function userShow() {
+        $ships = Ships::get();
+        $manufacturers = Manufacturers::get();
+        $rols = Rols::get();
+        $focus = Focus::get();
+        return view('welcome', [
+            'ships' => $ships,
+            'manufacturers' => $manufacturers,
+            'rols' => $rols,
+            'focus' => $focus,
+        ]);
+    }
+
     public function show()
     {
         $ships = Ships::get();
