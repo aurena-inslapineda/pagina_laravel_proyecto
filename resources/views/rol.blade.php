@@ -2,6 +2,9 @@
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Roles') }}
+            <a href="{{ route('rol.add') }}" style="display: inline-block">
+                <x-gmdi-library-add class="text-gray-900 hover:text-gray-500"/>
+            </a>
         </h2>
     </x-slot>
 
@@ -27,7 +30,7 @@
                                     {{ $rol->rol_name }}
                                 </td>
                                 <td class="px-6 py-4 flex justify-evenly">
-                                    <a href="#" class="">
+                                    <a href=" {{ route('rol.update', $rol->id) }} " class="">
                                         <x-far-edit class="text-blue-800 hover:text-blue-400"/>
                                     </a>
                                     {{-- llamar a la funcion delete del controlador, pasandole la id de $casal->id con un link y hacer un reload a la pagina--}}
