@@ -20,7 +20,7 @@ class ShipsSeeder extends Seeder
             'manufacturer_id' => 1,
             'rol_id' => 1,
             'focus_id' => 1,
-            'ship_image' => 'enterprise.jpg',
+            'ship_image' => 'enterprise.avif',
             'crew_size' => 200,
             'length' => 200,
             'mass' => 200,

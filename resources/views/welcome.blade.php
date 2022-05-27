@@ -25,7 +25,17 @@
             @if (Route::has('login'))
                 <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
                     @auth
-                        <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Dashboard</a>
+                    <div class="flex flex-row">
+                        <a href="#" class="text-sm text-gray-700 dark:text-gray-500 flex flex-row">
+                            <span id="cart" class="text-m text-gray-700 dark:text-gray-500">
+                                0
+                            </span>
+                            <x-gmdi-shopping-cart-checkout/>
+                        </a>
+
+                        <a href="{{ url('/dashboard') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Dashboard</a>
+                    </div>
+
                     @else
                         <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
 
@@ -42,7 +52,11 @@
                             <table class="table-auto w-full text-sm text-left text-gray-500 border-2 rounded-full border-cyan-500 ">
                                 <thead class="text-xs text-gray-700 uppercase bg-gray-50">
                                     <tr>
-                                        <th scope="col" class="px-6 py-2">ID</th>
+                                        @if(Auth::check())
+                                            @if( Auth::user()->isAdmin )
+                                                <th scope="col" class="px-6 py-2">ID</th>
+                                            @endif
+                                        @endif
                                         <th scope="col" class="px-6 py-2">Nombre</th>
                                         <th scope="col" class="px-6 py-2">Ensambladora</th>
                                         <th scope="col" class="px-6 py-2">Rol</th>
@@ -53,18 +67,22 @@
                                         <th scope="col" class="px-6 py-2">Masa</th>
                                         <th scope="col" class="px-6 py-2">Precio unidad</th>
                                         <th scope="col" class="px-6 py-2">Stock</th>
-                                        {{-- only show is loged --}}
                                         @if(Auth::check())
-                                            <th scope="col" class="px-6 py-2"><span class="sr-only">Editar Y Eliminar</span></th>
+                                            {{-- only show is loged --}}
+                                            <th scope="col" class="px-6 py-2"><span class="sr-only">Carrito</span></th>
                                         @endif
                                     </tr>
                                 </thead>
                                 <tbody class="bg-white border-b text-sm">
                                     @foreach ($ships as $ship)
                                     <tr class="whitespace-nowrap">
-                                        <th scope="row" class="px-6 py-4">
-                                            {{ $ship->id }}
-                                        </th>
+                                        @if(Auth::check())
+                                            @if( Auth::user()->isAdmin )
+                                            <th scope="row" class="px-6 py-4">
+                                                {{ $ship->id }}
+                                            </th>
+                                            @endif
+                                        @endif
                                         <td class="px-6 py-4 text-gray-900">
                                             {{ $ship->ship_name }}
                                         </td>
@@ -78,7 +96,8 @@
                                             {{ $focus[$ship->focus_id - 1]->focus_name }}
                                         </td>
                                         <td class="px-6 py-4 text-gray-900">
-                                            {{ $ship->ship_image }}
+                                            {{-- load img --}}
+                                            <img src="/img/{{ $ship->ship_image }}" alt="{{ $ship->ship_name }}" width="100px">
                                         </td>
                                         <td class="px-6 py-4 text-gray-900">
                                             {{ $ship->crew_size }}

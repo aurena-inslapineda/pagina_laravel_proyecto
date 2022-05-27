@@ -96,19 +96,19 @@ class ShipsController extends Controller
 
     public function updateConfirm($id_ship, Request $request)
     {
-        // Check if ship_name exist in database
-        $ship = Ships::where('ship_name', $request->ship_name)->first();
-        if ($ship) {
-            return redirect()->route('ships.update', $id_ship)->with('error', 'El nombre de la nave ya existe');
-        } else {
             // Update ship
-            $ship = Ships::find($id_ship);
-            $ship->ship_name = $request->ship_name;
-            $ship->id_manufacturers = $request->id_manufacturers;
-            $ship->id_rols = $request->id_rols;
-            $ship->id_focus = $request->id_focus;
-            $ship->save();
-            return redirect()->route('ships')->with('success', 'La nave ha sido actualizada');
-        }
+        $ship = Ships::find($id_ship);
+        $ship->ship_name = $request->ship_name;
+        $ship->manufacturer_id = $request->manufacturer_id;
+        $ship->rol_id = $request->rol_id;
+        $ship->focus_id = $request->focus_id;
+        $ship->ship_image = $request->ship_image;
+        $ship->crew_size = $request->crew_size;
+        $ship->length = $request->length;
+        $ship->mass = $request->mass;
+        $ship->unit_price = $request->unit_price;
+        $ship->units_in_stock = $request->units_in_stock;
+        $ship->save();
+        return redirect()->route('ships')->with('success', 'La nave ha sido actualizada');
     }
 }

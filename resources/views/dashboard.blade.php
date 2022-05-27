@@ -1,8 +1,15 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
+        {{-- if admin show Admin Dashboard title --}}
+        @if ( Auth::user()->isAdmin )
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                {{ __('Admin Dashboard') }}
+            </h2>
+        @else
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                {{ __('Dashboard') }}
+            </h2>
+        @endif
     </x-slot>
 
     {{-- Mostrar las ordenes, dependiendo de si es usuario, que solo puede ver sus ordenes y admin que puede ver todas lasa ordenes --}}
@@ -13,49 +20,94 @@
                     <table class="table-auto w-full text-sm text-left text-gray-500 border-2 rounded-full border-cyan-500">
                         <thead class="text-xs text-gray-700 uppercase bg-gray-50">
                             <tr>
+                                {{-- Solo mostrar si esta el logueado --}}
                                 <th scope="col" class="px-4 py-2">ID</th>
                                 <th scope="col" class="px-6 py-2">User ID</th>
                                 <th scope="col" class="px-6 py-2">Pagado</th>
                                 <th scope="col" class="px-6 py-2">Estado</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            @foreach ($orders as $order)
-                            <tr>
-                                <td class="px-6 py-4">{{ $order->id }}</td>
-                                <td class="px-6 py-4">{{ $order->user_id }}</td>
-                                <td class="px-6 py-4">{{ $order->paid }}</td>
-                                <td class="px-6 py-4">{{ $order->status }}</td>
-                            </tr>
-                            <tr>
-                                <td colspan="4">
-                                    <table class="table-auto w-full text-sm text-left text-gray-500 border-2 rounded-full border-cyan-500">
-                                        <thead class="text-xs text-gray-700 uppercase bg-gray-50">
-                                            <tr>
-                                                <th scope="col" class="px-4 py-2">ID</th>
-                                                <th scope="col" class="px-4 py-1">Linia ID</th>
-                                                <th scope="col" class="px-6 py-1">Producto</th>
-                                                <th scope="col" class="px-6 py-1">Cantidad</th>
-                                                <th scope="col" class="px-6 py-1">Precio</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach ($order_ship->where('order_id', $order->id) as $order_sp)
-                                            <tr>
-                                                <td class="px-6 py-4">{{ $order->id }}</td>
-                                                <td class="px-6 py-2">{{ $order_sp->id }}</td>
-                                                <td class="px-6 py-2">{{ $order_sp->ship_id }}</td>
-                                                <td class="px-6 py-2">{{ $order_sp->quantity }}</td>
-                                                <td class="px-6 py-2">{{ $order_sp->unit_price }}</td>
-                                            </tr>
-                                            @endforeach
-                                        </tbody>
-                                    </table>
-                                </td>
-                            </tr>
-                            @endforeach
+                        {{-- check is admin --}}
+                        @if ( Auth::user()->isAdmin )
+                            <tbody>
+                                @foreach ($orders as $order)
+                                <tr>
+                                    <td class="px-6 py-4">{{ $order->id }}</td>
+                                    <td class="px-6 py-4">{{ $order->user_id }}</td>
+                                    <td class="px-6 py-4">{{ $order->paid }}</td>
+                                    <td class="px-6 py-4">{{ $order->status }}</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="4">
+                                        <table class="table-auto w-full text-sm text-left text-gray-500 border-2 rounded-full border-cyan-500">
+                                            <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                                                <tr>
+                                                    <th scope="col" class="px-4 py-2">ID</th>
+                                                    <th scope="col" class="px-4 py-1">Linia ID</th>
+                                                    <th scope="col" class="px-6 py-1">Producto</th>
+                                                    <th scope="col" class="px-6 py-1">Cantidad</th>
+                                                    <th scope="col" class="px-6 py-1">Precio</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach ($order_ship->where('order_id', $order->id) as $order_sp)
+                                                <tr>
+                                                    <td class="px-6 py-4">{{ $order->id }}</td>
+                                                    <td class="px-6 py-2">{{ $order_sp->id }}</td>
+                                                    <td class="px-6 py-2">{{ $order_sp->ship_id }}</td>
+                                                    <td class="px-6 py-2">{{ $order_sp->quantity }}</td>
+                                                    <td class="px-6 py-2">{{ $order_sp->unit_price }}</td>
+                                                </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                                @endforeach
 
-                        </tbody>
+                            </tbody>
+                        @else
+                            <tbody>
+                                {{-- Only show user orders --}}
+                                @foreach ($orders as $order)
+                                    @if ( $order->user_id == Auth::user()->id )
+                                        <tr>
+                                            <td class="px-6 py-4">{{ $order->id }}</td>
+                                            <td class="px-6 py-4">{{ $order->user_id }}</td>
+                                            <td class="px-6 py-4">{{ $order->paid }}</td>
+                                            <td class="px-6 py-4">{{ $order->status }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="4">
+                                                <table class="table-auto w-full text-sm text-left text-gray-500 border-2 rounded-full border-cyan-500">
+                                                    <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                                                        <tr>
+                                                            <th scope="col" class="px-4 py-2">ID</th>
+                                                            <th scope="col" class="px-4 py-1">Linia ID</th>
+                                                            <th scope="col" class="px-6 py-1">Producto</th>
+                                                            <th scope="col" class="px-6 py-1">Cantidad</th>
+                                                            <th scope="col" class="px-6 py-1">Precio</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @foreach ($order_ship->where('order_id', $order->id) as $order_sp)
+                                                        <tr>
+                                                            <td class="px-6 py-4">{{ $order->id }}</td>
+                                                            <td class="px-6 py-2">{{ $order_sp->id }}</td>
+                                                            <td class="px-6 py-2">{{ $order_sp->ship_id }}</td>
+                                                            <td class="px-6 py-2">{{ $order_sp->quantity }}</td>
+                                                            <td class="px-6 py-2">{{ $order_sp->unit_price }}</td>
+                                                        </tr>
+                                                        @endforeach
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    @endif
+                                @endforeach
+                            </tbody>
+                        @endif
+
                     </table>
                 </div>
             </div>

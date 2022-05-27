@@ -2,6 +2,10 @@
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Naves') }}
+
+            <a href="{{ route('ships.add') }}" style="display: inline-block">
+                <x-gmdi-library-add class="text-gray-900 hover:text-gray-500"/>
+            </a>
         </h2>
     </x-slot>
 
@@ -45,7 +49,7 @@
                                     {{ $focus[$ship->focus_id - 1]->focus_name }}
                                 </td>
                                 <td class="px-6 py-4 text-gray-900">
-                                    {{ $ship->ship_image }}
+                                    <img src="/img/{{ $ship->ship_image }}" alt="{{ $ship->ship_name }}" width="100px">
                                 </td>
                                 <td class="px-6 py-4 text-gray-900">
                                     {{ $ship->crew_size }}
@@ -63,7 +67,7 @@
                                     {{ $ship->units_in_stock }}
                                 </td>
                                 <td class="px-6 py-4 flex justify-evenly">
-                                    <a href="#" class="">
+                                    <a href="{{ route('ships.update', $ship->id) }}">
                                         <x-far-edit class="text-blue-800 hover:text-blue-400"/>
                                     </a>
                                     <a href="{{ route('ships.delete', $ship->id) }}">
